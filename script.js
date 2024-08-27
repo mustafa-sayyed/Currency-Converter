@@ -3,6 +3,7 @@ const BASE_URL =
 
 let selectElements = document.querySelectorAll("select");
 let button = document.querySelector("button");
+
 for (const select of selectElements) {
   for (const country in countryList) {
     let option = document.createElement("option");
@@ -35,8 +36,16 @@ const updateFlag = (element) => {
   }/flat/64.png`;
 };
 
-button.addEventListener("click", async (event) => {
+window.addEventListener("load", () => {
+  getExchangerate();
+})
+
+button.addEventListener("click", (event) => {
   event.preventDefault();
+  getExchangerate();
+});
+
+const getExchangerate = async () => {
   let amtVal = document.querySelector(".amount input").value;
   if (amtVal == "" || amtVal < 1) {
     alert("Please enter a valid amount");
@@ -58,4 +67,4 @@ button.addEventListener("click", async (event) => {
   let exchangeRateElement = document.querySelector("#exchange-rate");
   exchangeRateElement
   .innerText = `Exchange Rate: ${amtVal} ${fromCurr} = ${exchangeRate} ${toCurr}`
-});
+}
