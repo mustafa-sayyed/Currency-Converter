@@ -64,5 +64,5 @@ const getExchangerate = async () => {
 
   let exchangeRateElement = document.querySelector("#exchange-rate");
   exchangeRateElement
-  .innerText = `Exchange Rate: ${amtVal} ${fromCurr} = ${exchangeRate} ${toCurr}`
+  .innerText = `${amtVal} ${fromCurr} = ${exchangeRate} ${toCurr}`
 }
