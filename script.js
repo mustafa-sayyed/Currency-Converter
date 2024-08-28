@@ -31,9 +31,7 @@ const updateFlag = (element) => {
   // console.log(element.value);
   // console.log(element.previousElementSibling);
   // console.log(countryList[element.value]);
-  element.previousElementSibling.src = `https://flagsapi.com/${
-    countryList[element.value]
-  }/flat/64.png`;
+  element.previousElementSibling.src = `https://flagsapi.com/${countryList[element.value]}/flat/64.png`;
 };
 
 window.addEventListener("load", () => {
