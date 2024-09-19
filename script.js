@@ -3,6 +3,7 @@ const BASE_URL =
 
 let selectElements = document.querySelectorAll("select");
 let button = document.querySelector("button");
+const exchange = document.querySelector("#exchange");
 
 for (const select of selectElements) {
   for (const country in countryList) {
@@ -31,12 +32,14 @@ const updateFlag = (element) => {
   // console.log(element.value);
   // console.log(element.previousElementSibling);
   // console.log(countryList[element.value]);
-  element.previousElementSibling.src = `https://flagsapi.com/${countryList[element.value]}/flat/64.png`;
+  element.previousElementSibling.src = `https://flagsapi.com/${
+    countryList[element.value]
+  }/flat/64.png`;
 };
 
 window.addEventListener("load", () => {
   getExchangerate();
-})
+});
 
 button.addEventListener("click", (event) => {
   event.preventDefault();
@@ -63,6 +66,25 @@ const getExchangerate = async () => {
   );
 
   let exchangeRateElement = document.querySelector("#exchange-rate");
-  exchangeRateElement
-  .innerText = `${amtVal} ${fromCurr} = ${exchangeRate} ${toCurr}`
-}
+  exchangeRateElement.innerText = `${amtVal} ${fromCurr} = ${exchangeRate} ${toCurr}`;
+};
+
+exchange.addEventListener("click", () => {
+  exchange.classList.toggle("rotate");
+
+  let fromSelect = document.getElementById("from");
+  let toSelect = document.getElementById("to");
+  console.log(fromSelect, toSelect);
+
+  let fromSelectedValue = fromSelect.value;
+  let toSelectedValue = toSelect.value;
+  console.log(toSelectedValue, fromSelectedValue);
+
+  fromSelect.value = toSelectedValue;
+  toSelect.value = fromSelectedValue;
+  console.log("from:", fromSelect.value, "to:", toSelect.value);
+
+  updateFlag(fromSelect);
+  updateFlag(toSelect);
+  getExchangerate();
+});
